@@ -1,2 +1,2 @@
-venv
-test_assets
+.venv
+.test_assets
