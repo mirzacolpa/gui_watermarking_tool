@@ -81,7 +81,7 @@ left_frame = tk.Frame(root, width=300, height=800, bg=winconf.LEFT_COLUMN_BG)
 left_frame.pack(side="left", fill="both")
 
 # title label for the left column
-settings_label = Label(left_frame, text="Watermark configuration", font=("Arial", 18))
+settings_label = Label(left_frame, text="Watermark configuration", font=("Arial", winconf.FONT_1), bg=winconf.LEFT_COLUMN_BG)
 settings_label.pack(pady=10)
 
 # left column elements:
@@ -97,27 +97,30 @@ button_holder_frame.pack(pady=10)
 
 load_image_button = Button(button_holder_frame, text="Load Image",
                            command=lambda: add_image_to_list(listbox))
-load_image_button.grid(row=0, column=0, padx=10)
+load_image_button.grid(row=0, column=0, pady=winconf.BUTTON_PADDING_Y, padx=winconf.BUTTON_PADDING_X, sticky="w")
 
 remove_image_button = Button(button_holder_frame, text="Remove Image",
                              command=remove_image_from_list)
-remove_image_button.grid(row=0, column=1, padx=10)
+remove_image_button.grid(row=0, column=1,  pady=winconf.BUTTON_PADDING_Y, padx=winconf.BUTTON_PADDING_X, sticky="w")
 
 # Text configuration
-text_settings_label = Label(left_frame, text="Edit Text", font=("Arial", 18))
-text_settings_label.pack(pady=10)
+text_settings_label = Label(left_frame, text="Edit Text", font=("Arial", winconf.FONT_2), bg=winconf.LEFT_COLUMN_BG)
+text_settings_label.pack( pady=winconf.GENERAL_COMPONENT_PADDING_Y, padx=winconf.GENERAL_COMPONENT_PADDING_X)
 
 text_configuration_frame = tk.Frame(left_frame, bg=winconf.LEFT_COLUMN_BG)
-text_configuration_frame.pack(pady=10)
+text_configuration_frame.pack(pady=winconf.GENERAL_COMPONENT_PADDING_Y, padx=winconf.GENERAL_COMPONENT_PADDING_X)
 
 # text input and preview
+text_settings_label = Label(left_frame, text="Edit Text", font=("Arial", winconf.FONT_2), bg=winconf.LEFT_COLUMN_BG)
+text_settings_label.pack(pady=winconf.GENERAL_COMPONENT_PADDING_Y, padx=winconf.GENERAL_COMPONENT_PADDING_X)
+
 text_input_label = Label(text_configuration_frame, text="Text", bg=winconf.LEFT_COLUMN_BG)
-text_input_label.grid(row=0, column=0, padx=10)
+text_input_label.grid(row=0, column=0,  pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky='e')
 text_input_field = tk.Entry(text_configuration_frame, width=30)
-text_input_field.grid(row=0, column=1)
+text_input_field.grid(row=0, column=1,  pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky='w')
 # Font
 font_label = Label(text_configuration_frame, text="Font", bg=winconf.LEFT_COLUMN_BG)
-font_label.grid(row=1, column=0)
+font_label.grid(row=1, column=0,  pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky='e')
 
 # color picker
 font_var = tk.StringVar()
@@ -125,43 +128,43 @@ font_var = tk.StringVar()
 font_choices = {"arial.ttf", 'times.ttf'}
 font_var.set('arial.ttf')  # set the default option
 font_picker = ttk.Combobox(text_configuration_frame, textvariable=font_var, values=list(font_choices))
-font_picker.grid(row=1, column=1)
+font_picker.grid(row=1, column=1,  pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky="w")
 
 # Color
 color_label = Label(text_configuration_frame, text="Color", bg='lightgray')
-color_label.grid(row=2, column=0)
+color_label.grid(row=2, column=0, pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky="e")
 # color picker
 tk_var = tk.StringVar()
 # TODO: refactor picker to use the values from the color enum
 choices = {'red', 'green', 'yellow', 'black'}
 tk_var.set('red')  # set the default option
 color_picker = ttk.Combobox(text_configuration_frame, textvariable=tk_var, values=list(choices))
-color_picker.grid(row=2, column=1)
+color_picker.grid(row=2, column=1,  pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky="w")
 
 # Font size
 font_size_label = Label(text_configuration_frame, text="Font size", bg=winconf.LEFT_COLUMN_BG)
-font_size_label.grid(row=3, column=0)
+font_size_label.grid(row=3, column=0,  pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky="e")
 # font size picker
 font_size_var = tk.IntVar()
 font_size_var.set(12)  # set the default value
 #   Create the Spinbox
 font_size_picker = tk.Spinbox(text_configuration_frame, from_=1, to=72, textvariable=font_size_var, width=5)
-font_size_picker.grid(row=3, column=1)
+font_size_picker.grid(row=3, column=1,  pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky="w")
 
 # Buttons (Tile) Single Pattern
 tile_label = Label(text_configuration_frame, text="Tile", bg=winconf.LEFT_COLUMN_BG)
-tile_label.grid(row=4, column=0)
+tile_label.grid(row=4, column=0,  pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky="e")
 
 # opacity
 opacity_label = Label(text_configuration_frame, text="Opacity", bg=winconf.LEFT_COLUMN_BG)
-opacity_label.grid(row=5, column=0)
+opacity_label.grid(row=5, column=0,  pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky='e')
 
 # opacity picker
 opacity_var = tk.IntVar()
 # set the default value
 #   Create the Spinbox
 opacity_picker = tk.Spinbox(text_configuration_frame, from_=0, to=100, textvariable=opacity_var, width=5)
-opacity_picker.grid(row=5, column=1)
+opacity_picker.grid(row=5, column=1, pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky='w')
 
 # TODO: add rotation parameter control
 
@@ -171,28 +174,30 @@ opacity_picker.grid(row=5, column=1)
 # position input X
 # TODO: enable position calculation relative to the image size, currently fixed to 800pxs
 position_x_label = Label(text_configuration_frame, text="Position X", bg=winconf.LEFT_COLUMN_BG)
-position_x_label.grid(row=6, column=0)
-position_var = tk.IntVar()
-position_var.set(400)
-position_x_picker = tk.Spinbox(text_configuration_frame, from_=0, to=800, textvariable=position_var, width=5)
-position_x_picker.grid(row=6, column=1)
+position_x_label.grid(row=6, column=0, pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky='e')
+position_x_var = tk.IntVar()
+position_x_var.set(400)
+position_x_picker = tk.Spinbox(text_configuration_frame, from_=0, to=800, textvariable=position_x_var, width=5)
+position_x_picker.grid(row=6, column=1, pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky='w')
 
 position_y_label = Label(text_configuration_frame, text="Position Y", bg=winconf.LEFT_COLUMN_BG)
-position_y_label.grid(row=7, column=0)
+position_y_label.grid(row=7, column=0, pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky='e')
 
-position_y_picker = tk.Spinbox(text_configuration_frame, from_=0, to=800, textvariable=position_var, width=5)
-position_y_picker.grid(row=7, column=1)
+position_y_var = tk.IntVar()
+position_y_var.set(400)
+position_y_picker = tk.Spinbox(text_configuration_frame, from_=0, to=800, textvariable=position_y_var, width=5)
+position_y_picker.grid(row=7, column=1,  pady=winconf.COMPONENT_PADDING_Y, padx=winconf.COMPONENT_PADDING_X, sticky='w')
 
 # button add watermark
 add_watermark_to_image_button = Button(text_configuration_frame, text="Add text",
                                        command=lambda: add_watermark_to_image(panel,
                                                                               build_watermark_configuration()))
-add_watermark_to_image_button.grid(row=8, column=0, padx=10)
+add_watermark_to_image_button.grid(row=8, column=0, pady=winconf.BUTTON_PADDING_Y, padx=winconf.BUTTON_PADDING_X, sticky='e')
 
 # save watermarked image
 save_watermarked_image_button = Button(text_configuration_frame, text="Save image",
                                        command=lambda: save_watermarked_image(img_panel=panel))
-save_watermarked_image_button.grid(row=8, column=1, padx=10)
+save_watermarked_image_button.grid(row=8, column=1,  pady=winconf.BUTTON_PADDING_Y, padx=winconf.BUTTON_PADDING_X, sticky='e')
 
 # RIGHT PANEL
 # Create the right column (image display)
